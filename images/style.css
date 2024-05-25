@@ -1,0 +1,600 @@
+:root {
+  --primary-color-h: 21;
+  --primary-color-s: 83%;
+  --primary-color-l: 51%;
+  --primary-color: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    var(--primary-color-l)
+  );
+  --primary-color-dark: hsl(
+    calc(var(--primary-color-h) + 14),
+    calc(var(--primary-color-s) - 8%),
+    calc(var(--primary-color-l) - 18%)
+  );
+  --primary-color-light: hsl(
+    calc(var(--primary-color-h) - 34),
+    calc(var(--primary-color-s) + 4%),
+    calc(var(--primary-color-l) + 10%)
+  );
+  --secondary-color-h: 240;
+  --secondary-color-s: 0%;
+  --secondary-color: hsl(
+    var(--secondary-color-h),
+    var(--secondary-color-s),
+    100%
+  );
+  --secondary-color-dark: hsl(
+    var(--secondary-color-h),
+    calc(var(--secondary-color-s) + 46%),
+    92%
+  );
+  --secondary-color-darker: hsl(
+    var(--secondary-color-h),
+    calc(var(--secondary-color-s) + 39%),
+    84%
+  );
+  --secondary-color-ultradark: hsl(
+    var(--secondary-color-h),
+    calc(var(--secondary-color-s) + 42%),
+    82%
+  );
+  --secondary-color-darkest: hsl(
+    var(--secondary-color-h),
+    calc(var(--secondary-color-s) + 35%),
+    71%
+  );
+}
+
+@keyframes waves {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress);
+  }
+}
+body {
+  background: var(--secondary-color-dark);
+  margin: 10px;
+}
+body .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(80% - 40px);
+  margin: auto;
+}
+body .container .controls {
+  display: flex;
+  color: var(--secondary-color-darkest);
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .controls legend {
+  font-size: 12px;
+  font-weight: bold;
+  background: var(--secondary-color-dark);
+  padding: 2px 4px;
+  border-radius: 4px;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+}
+body .container .controls div {
+  margin: 5px;
+}
+body .container .controls div input[type=color] {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  vertical-align: middle;
+  border: 2px solid var(--secondary-color-dark);
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  overflow: hidden;
+  cursor: pointer;
+}
+body .container .controls div input[type=color]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+body .container .controls div input[type=color]::-webkit-color-swatch {
+  border: none;
+}
+body .container .controls div label {
+  font-size: 14px;
+}
+body .container .components {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border-radius: 48px;
+  box-shadow: inset 12px 12px 22px var(--secondary-color-darker), inset -3px -3px 28px var(--secondary-color);
+}
+body .container .components .tab-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  border-radius: 16px;
+}
+body .container .components .tab-control input {
+  display: none;
+}
+body .container .components .tab-control input:checked + label {
+  pointer-events: none;
+  color: var(--primary-color);
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .tab-control label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 32px;
+  margin: 5px;
+  padding: 8px 24px;
+  color: var(--secondary-color-darkest);
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.5s ease;
+}
+body .container .components .tab-control label:hover {
+  color: var(--primary-color);
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+}
+body .container .components .clock {
+  position: relative;
+  width: 25%;
+  min-width: 200px;
+  margin: 10px 0;
+  aspect-ratio: 1/1;
+  background-image: repeating-conic-gradient(var(--secondary-color-ultradark) -0.5deg 0.5deg, transparent 0.5deg 5.5deg);
+  border: solid var(--secondary-color-dark);
+  border-width: clamp(20px, 4vw, 40px);
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+}
+body .container .components .clock:before {
+  content: "";
+  position: absolute;
+  background-image: repeating-conic-gradient(var(--secondary-color-ultradark) -1.5deg 1.5deg, transparent 1.5deg 28.5deg);
+  height: 100%;
+  width: 100%;
+}
+body .container .components .clock:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--secondary-color-dark);
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  border-radius: 50%;
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .clock .clock-hand {
+  position: absolute;
+  bottom: 50%;
+  transform-origin: 50% 100%;
+  border-radius: 4px 4px 2px 2px;
+  z-index: 2;
+}
+body .container .components .clock .clock-hand.hour {
+  left: calc(50% - 5px);
+  width: 9px;
+  height: calc(50% - 40px);
+  background: var(--secondary-color-ultradark);
+}
+body .container .components .clock .clock-hand.min {
+  left: calc(50% - 3px);
+  width: 5px;
+  height: calc(50% - 24px);
+  background: var(--secondary-color-ultradark);
+}
+body .container .components .clock .clock-hand.sec {
+  bottom: calc(50% - 32px);
+  left: calc(50% - 2px);
+  transform-origin: 50% calc(100% - 32px);
+  width: 3px;
+  height: calc(50% + 16px);
+  background: var(--primary-color);
+}
+body .container .components .clock .clock-hand.sec:after {
+  content: "";
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+body .container .components .clock .clock-time {
+  position: absolute;
+  top: calc(50% + 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secondary-color-darkest);
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+  z-index: 1;
+}
+body .container .components .chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center;
+  width: fit-content;
+  height: 60px;
+  margin: auto;
+  padding: 0 16px;
+  border-radius: 16px;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+}
+body .container .components .chip .chip-icon.icon-brush {
+  font-size: 18px;
+  color: var(--primary-color);
+}
+body .container .components .chip .chip-icon.icon-close {
+  font-size: 14px;
+  color: var(--secondary-color-ultradark);
+  cursor: pointer;
+}
+body .container .components .chip p {
+  font-size: 14px;
+  color: var(--secondary-color-darkest);
+  margin: 5px;
+}
+body .container .components .switches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 10px;
+}
+body .container .components .switches .switch {
+  width: 96px;
+  margin: 10px;
+}
+body .container .components .switches .switch input {
+  display: none;
+}
+body .container .components .switches .switch input:checked ~ label:before {
+  opacity: 1;
+}
+body .container .components .switches .switch input:checked ~ label:after {
+  left: calc(100% - 38px);
+  background: var(--secondary-color-dark);
+}
+body .container .components .switches .switch label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border-radius: 24px;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  cursor: pointer;
+}
+body .container .components .switches .switch label:after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--secondary-color-darkest);
+  transition: all 0.4s ease;
+}
+body .container .components .switches .switch label:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(330deg, var(--primary-color-dark) 0%, var(--primary-color) 50%, var(--primary-color-light) 100%);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+body .container .components .switches .checkbox {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+body .container .components .switches .checkbox input {
+  display: none;
+}
+body .container .components .switches .checkbox input:checked ~ label {
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .switches .checkbox input:checked ~ label:after {
+  border-color: var(--primary-color);
+}
+body .container .components .switches .checkbox label {
+  position: relative;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  cursor: pointer;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+}
+body .container .components .switches .checkbox label:hover:after {
+  border-color: var(--primary-color);
+}
+body .container .components .switches .checkbox label:after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 4px);
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 20px;
+  height: 8px;
+  border-width: 0 0 3px 3px;
+  border-style: solid;
+  border-color: var(--secondary-color-darkest);
+  transition: 1s ease;
+}
+body .container .components .switches .radio {
+  margin: 10px;
+}
+body .container .components .switches .radio input {
+  display: none;
+}
+body .container .components .switches .radio input:checked ~ label {
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .switches .radio input:checked ~ label::after {
+  background: var(--primary-color);
+}
+body .container .components .switches .radio label {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  cursor: pointer;
+}
+body .container .components .switches .radio label:hover::after {
+  background: var(--primary-color);
+}
+body .container .components .switches .radio label::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--secondary-color-darkest);
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+body .container .components .switches .btn {
+  width: fit-content;
+  height: 48px;
+  margin: 10px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+body .container .components .switches .btn.btn-primary {
+  background: var(--primary-color);
+  box-shadow: inset 3px 3px 16px var(--primary-color-light), inset -3px -3px 16px var(--primary-color-dark), 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  color: var(--secondary-color-dark);
+}
+body .container .components .switches .btn.btn-primary:hover {
+  color: var(--secondary-color);
+}
+body .container .components .switches .btn.btn-primary:active {
+  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-color-dark), inset -0.2rem -0.2rem 1rem var(--primary-color-light);
+}
+body .container .components .switches .btn.btn-secondary {
+  color: var(--secondary-color-darkest);
+  background: var(--secondary-color-dark);
+}
+body .container .components .switches .btn.btn-secondary:hover {
+  color: var(--primary-color);
+}
+body .container .components .switches .btn.btn-secondary:active {
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .form, body .container .components .search {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+body .container .components .form input, body .container .components .search input {
+  width: calc(100% - 32px);
+  height: 48px;
+  background: none;
+  font-size: 16px;
+  color: var(--secondary-color-darkest);
+  border: none;
+  border-radius: 8px;
+  padding: 0 16px;
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .form input::placeholder, body .container .components .search input::placeholder {
+  color: var(--secondary-color-ultradark);
+}
+body .container .components .form input:focus, body .container .components .search input:focus {
+  outline: none;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+}
+body .container .components .search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+body .container .components .search input {
+  width: calc(100% - 56px);
+  padding-left: 56px;
+}
+body .container .components .search input:focus + .search-icon {
+  color: var(--primary-color);
+}
+body .container .components .search .search-icon {
+  position: absolute;
+  font-size: 24px;
+  padding: 0 16px;
+  color: var(--secondary-color-darkest);
+  transition: 0.3s ease;
+}
+body .container .components .icons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+body .container .components .icons i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  font-size: 24px;
+  margin: 10px;
+  cursor: pointer;
+  color: var(--secondary-color-darkest);
+  transition: all 0.5s ease;
+}
+body .container .components .icons i:active {
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+  color: var(--primary-color);
+}
+body .container .components .icons i:hover {
+  color: var(--primary-color);
+}
+body .container .components .progress {
+  flex: 1;
+  align-self: center;
+}
+body .container .components .progress .progress-bar {
+  position: relative;
+  display: block;
+  padding-top: 20px;
+  margin: 10px;
+  text-align: center;
+  color: var(--secondary-color-darkest);
+  font-weight: 600;
+}
+body .container .components .progress .progress-bar:before,
+body .container .components .progress .progress-bar:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  display: block;
+  border: 2px solid var(--secondary-color-darker);
+  outline: var(--secondary-color-dark) solid 2px;
+  height: 8px;
+  border-radius: 5px;
+}
+body .container .components .progress .progress-bar:before {
+  width: 100%;
+  background: var(--secondary-color-dark);
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+}
+body .container .components .progress .progress-bar:after {
+  width: var(--progress);
+  animation: progress 2s;
+  background: var(--primary-color);
+  background: linear-gradient(-1deg, var(--primary-color-dark) 0%, var(--primary-color) 50%, var(--primary-color-light) 100%);
+  border-radius: 5px 0 0 5px;
+  border-right: 0;
+  outline: none;
+}
+body .container .components .play-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 20px;
+}
+body .container .components .play-btn-wrapper .play-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 96px;
+  border: none;
+  border-radius: 50%;
+  font-size: 48px;
+  color: var(--primary-color);
+  z-index: 300;
+  background: var(--secondary-color-dark);
+  box-shadow: 5px 5px 10px var(--secondary-color-darker), -4px -4px 8px var(--secondary-color);
+  cursor: pointer;
+}
+body .container .components .play-btn-wrapper .play-btn.shadow {
+  box-shadow: inset 4px 4px 8px var(--secondary-color-darker), inset 4px -4px 8px var(--secondary-color);
+}
+body .container .components .play-btn-wrapper .play-btn .icon-play {
+  position: absolute;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+body .container .components .play-btn-wrapper .play-btn .icon-play.visibility {
+  opacity: 1;
+}
+body .container .components .play-btn-wrapper .play-btn .icon-pause {
+  position: absolute;
+  transition: all 0.2s linear;
+}
+body .container .components .play-btn-wrapper .play-btn .icon-pause.visibility {
+  opacity: 0;
+}
+body .container .components .play-btn-wrapper .wave {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  filter: blur(1px);
+  z-index: 100;
+}
+body .container .components .play-btn-wrapper .wave.wave-1 {
+  box-shadow: 0.4rem 0.4rem 0.8rem var(--secondary-color-darker), -0.4rem -0.4rem 0.8rem var(--secondary-color);
+  background: linear-gradient(to bottom right, var(--secondary-color-darker) 0%, var(--secondary-color) 100%);
+  animation: waves 4s linear infinite;
+}
+body .container .components .play-btn-wrapper .wave.wave-1.paused {
+  animation-play-state: paused;
+}
+body .container .components .play-btn-wrapper .wave.wave-2 {
+  box-shadow: 0.4rem 0.4rem 0.8rem var(--secondary-color-darker), -0.4rem -0.4rem 0.8rem var(--secondary-color);
+  animation: waves 4s linear 2s infinite;
+}
+body .container .components .play-btn-wrapper .wave.wave-2.paused {
+  animation-play-state: paused;
+}
