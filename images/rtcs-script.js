@@ -1,5 +1,5 @@
 var index = 0;
-var data= ["Web 3.0", "The Real Time Communication Server", "The Real Time Communication Service", "Web 3.0", "The Real Time Broadcasting Server"];
+var data= ["Web 3.0", "The Real Time Communication Server", "The Real Time Broadcasting Server", "Web 3.0", "The Real Time Communication Services"];
 
 var span= document.querySelector('span');
 var section= document.querySelector('section');
