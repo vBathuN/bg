@@ -1,0 +1,24 @@
+var index = 0;
+var data= ["Web 3.0", "The Real Time Communication Server", "The Real Time Communication Service", "Web 3.0", "The Real Time Broadcasting Server"];
+
+var span= document.querySelector('span');
+var section= document.querySelector('section');
+
+function init() {
+  let txt = document.createTextNode(data[index]);
+  section.dataset.identity = data[index];
+  span.innerText = txt.textContent;
+  index++;
+}
+
+init();
+
+setInterval(
+  function(){
+    let txt = document.createTextNode(data[index]);
+    section.dataset.identity = data[index];
+    span.innerText = txt.textContent;
+    index++;
+    index = index < data.length ?  index++ : 0 ;
+  }
+, 4501);
