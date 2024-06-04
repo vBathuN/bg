@@ -1,9 +1,8 @@
-html { background-color: #fff; } 
+html { background-color: transparent; } 
 body {
     min-height: 452px;
     max-width: 320px;
-    background-color: papayawhip; 
-    margin: 0 auto;
+    background-color: transparent;
 }
 .ml15 {
   font-weight: 800;
