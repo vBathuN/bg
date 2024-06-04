@@ -1,7 +1,4 @@
-body {
-overflow-y: hidden; /* Hide vertical scrollbar */
-overflow-x: hidden; /* Hide horizontal scrollbar */
-}
+
 .ml15 {
   font-weight: 800;
   font-size: 3.8em;
@@ -13,4 +10,8 @@ overflow-x: hidden; /* Hide horizontal scrollbar */
 .ml15 .word {
   display: table;
   line-height: 1em;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
